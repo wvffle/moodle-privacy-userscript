@@ -6,7 +6,7 @@
 // @grant    none
 // ==/UserScript==
 
-const events = ['visibilitychange', 'webkitvisibilitychange', 'blur', 'focus']
+const events = ['visibilitychange', 'msvisibilitychange', 'webkitvisibilitychange', 'blur', 'focus']
 
 for (const target of [window, document]) {
   for (const event of events) {
@@ -14,15 +14,18 @@ for (const target of [window, document]) {
   }
 }
 
-Object.defineProperty(document, 'visibilityState', {
-  get () {
-    return 'visible'
-  }
-})
+for (const prop of ['visibilityState', 'msvisibilitychange', 'webkitvisibilitychange']) {
+  Object.defineProperty(document, prop, {
+    get (target) {
+      return 'visible'
+    }
+  })
+}
 
-
-Object.defineProperty(document, 'hidden', {
-  get () {
-    return false
-  }
-})
+for (const prop of ['hidden', 'msHidden', 'webkitHidden']) {
+  Object.defineProperty(document, prop, {
+    get () {
+      return false
+    }
+  })
+}
