@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     Moodle Privacy UserScript
-// @version  1.0.0
+// @version  1.1.0
 // @run-at   document-start
 // @include  /^https?://cez(2|e)?\.wi\.pb\.edu\.pl/.*$/
 // @grant    none
@@ -13,3 +13,16 @@ for (const target of [window, document]) {
     target.addEventListener(event, e => e.stopImmediatePropagation(), true)
   }
 }
+
+Object.defineProperty(document, 'visibilityState', {
+  get () {
+    return 'visible'
+  }
+})
+
+
+Object.defineProperty(document, 'hidden', {
+  get () {
+    return false
+  }
+})
