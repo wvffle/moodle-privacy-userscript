@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Moodle Privacy UserScript
 // @version  1.0.0
-// @run-at 	 document-start
+// @run-at   document-start
 // @include  /^https?://cez(2|e)?\.wi\.pb\.edu\.pl/.*$/
 // @grant    none
 // ==/UserScript==
