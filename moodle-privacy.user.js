@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     Moodle Privacy UserScript
-// @version  1.2.1
+// @version  1.3.0
 // @run-at   document-start
 // @namespace https://wvffle.net/
 // @include  /^https?://cez(2|e)?\.wi\.pb\.edu\.pl/.*$/
@@ -30,3 +30,22 @@ for (const prop of ['hidden', 'msHidden', 'webkitHidden']) {
     }
   })
 }
+
+// Isolate variables
+(() => {     
+  const start = +new Date
+  let call = start
+   
+  window.requestAnimationFrame = window.msRequestAnimationFrame = window.mozRequestAnimationFrame = window.webkitRequestAnimationFrame = cb => {
+    const now = +new Date
+    const timeout = Math.min(call - now + 100 / 6)
+    call = now + timeout
+     
+    return setTimeout(() => cb(now - start), timeout)
+  }
+
+  window.cancelAnimationFrame = window.mozCancelAnimationFrame = window.webkitCancelAnimationFrame = window.cancelRequestAnimationFrame = 
+  window.msCancelRequestAnimationFrame = window.mozCancelRequestAnimationFrame = window.webkitCancelRequestAnimationFrame = i => {
+    return clearTimeout(i)
+  }
+})()
