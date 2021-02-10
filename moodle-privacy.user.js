@@ -3,8 +3,9 @@
 // @version  1.3.1
 // @run-at   document-start
 // @namespace https://wvffle.net/
-// @include  /^https?://cez(2|e)?\.wi\.pb\.edu\.pl/.*$/
+// @include  /^https?:\/\/cez(2|e)?\.wi\.pb\.edu\.pl\/.*$/
 // @include  /^https?:\/\/(moodle|ekursy)?\.put\.poznan\.pl\/.*$/
+// @include  /^https?:\/\/moodle?\.mimuw\.edu\.pl\/.*$/
 // @grant    none
 // ==/UserScript==
 
