@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     Moodle Privacy UserScript
-// @version  1.3.1
+// @version  1.3.2
 // @run-at   document-start
 // @namespace https://wvffle.net/
 // @include  /^https?:\/\/cez(2|e)?\.wi\.pb\.edu\.pl\/.*$/
