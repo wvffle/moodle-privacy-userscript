@@ -9,10 +9,47 @@
 // @grant    none
 // ==/UserScript==
 
-const events = ['visibilitychange', 'msvisibilitychange', 'webkitvisibilitychange', 'blur', 'focus']
+const events = {
+  mouse: {
+    mouseenter: false,
+    mouseleave: false,
+    mouseover: false,
+    mousemove: false,
+    wheel: true,
+    mousedown: true,
+    mouseup: true
+  },
+  visibility: {
+    visibilitychange: false,
+    blur: false,
+    focus: false
+  }
+}
+
+const expands = {
+  visibilitychange: ['visibilitychange', 'msvisibilitychange', 'webkitvisibilitychange']
+}
+
+const reducer = (acc, [key, value]) => {
+  if (typeof value === 'boolean') {
+    if (!value) {
+      if (key in expands) {
+        acc.add(...expands[key])
+      }
+
+      acc.add(key)
+    }
+    
+    return acc
+  }
+
+  return Object.entries(value).reduce(reducer, acc)
+}
+
+const eventsSet = Object.entries(events).reduce(reducer, new Set())
 
 for (const target of [window, document]) {
-  for (const event of events) {
+  for (const event of eventsSet) {
     target.addEventListener(event, e => e.stopImmediatePropagation(), true)
   }
 }
