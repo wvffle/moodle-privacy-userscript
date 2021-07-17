@@ -1,3 +1,5 @@
+# moved to https://github.com/wvffle/userscripts
+
 # moodle-privacy-userscript
 So basically, the moodle instances I'm forced to use tracks visibility API and/or focus/blur events on window. I simply wanted to disable them :)  
 
